@@ -1,0 +1,15 @@
+Teori-OOP
+senin-22-07-204
+
+1.class = merupakan blue-print/cetakan untuk membuat sebuah 
+	objek
+2. instansiasi / inisialisasi = perubahan dari class kedalam 
+	sebuah objek
+3. jenis aksesbilitas = private, public, protected, default
+4. $this = mereferensikan kepemiliki objek saat ini
+5. = memberi nilai / memasukkan nilai kedalam sebuah variable
+6. [] = tipe data array 
+7. as = sebagai atau alias
+8. => pemberi nilai ke dalam key pada tipe data array
+9. tag php = <?php ?> / <= ?>
+10. count = fungsi menghitung pada tipe array/objek/integer
