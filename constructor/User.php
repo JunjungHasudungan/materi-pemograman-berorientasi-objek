@@ -1,35 +1,44 @@
 <?php
-    // pembuatan class 
     class User {
-    
-        // melakukan registrasi properti yang dibutuhkan
-        public $id, $name, $email, $address, $role;
+        public $id, $name, $email, $address, $role;  // melakukan registrasi properti yang dibutuhkan
 
-        // melakukan pembuatan konstrutor menggunakan method spesial
-        // public function __construct(  ) // method construct tanpa variable parameter
-        // {
-        //     $this->id  = 2;
-        //     $this->name  = "Asep";
-        //     $this->email  = "user@example.com";
-        //     $this->address  = "Bandung";
-        //     $this->role  = "user";
+        public function __construct($dataUser = [])  {  // constructor dengan array kosong sebagai variable parameter
+            $this->id = $dataUser['id'] ?? null;
+            $this->name = $dataUser['name'] ?? null;
+            $this->email = $dataUser['email'] ?? null;
+            $this->address = $dataUser['address'] ?? null;
+            $this->role = $dataUser['role'] ?? null;
+        } 
+    }
+        $listUser = [  // membuat array 2 dimensi sebagai tempat memberi nilai list dataUser
+            [
+                'id'        => 1,
+                'name'      => 'Hasudungan',
+                'email'     => 'admin@example.com',
+                'address'   => 'Batam',
+                'role'      => 'admin'
+            ],
+            [
+                'id'        => 2,
+                'name'      => 'Asep',
+                'email'     => 'testUser@example.com',
+                'address'   => 'Bandung',
+                'role'      => 'user'
+            ],
+        ];
+        // pengisian nilai kedalam inisialisasi class objek
+        // $users = [];
+        // foreach ($listUser as $data) { // menggunkan konsep imperative
+        //     $users = new User($data);
         // }
 
-        public function __construct(
-            $id = 2, $name = "test user", $email = "testUser@example.com", 
-                $address = "batam", $role = "user") {
-                $this->id  = $id;
-                $this->name  = $name;
-                $this->email  = $email;
-                $this->address  = $address;
-                $this->role  = $role;
-        }
+        $users = array_map(function($data){  // menggunakan konsep deklarative
+            return new User($data);
+        }, $listUser);
 
-    }
+    // // melakukan instansiasi class-objek
+    // $user1 = new User("1", "Hasudungan", "admin@example.com", "Batam", "admin");
+    // $user2 = new User();
 
-    // melakukan instansiasi class-objek
-    $user1 = new User("1", "Hasudungan", "admin@example.com", "Batam", "admin");
-    $user2 = new User();
-
-    // melakukan koleksi data user kedalam variable array
-    $listUser = [$user1, $user2];
+    // // melakukan koleksi data user kedalam variable array
+    // $listUser = [$user1, $user2];

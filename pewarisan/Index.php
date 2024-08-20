@@ -1,29 +1,59 @@
+<?php
+
+require_once 'ChildClass.php';
+require_once 'BaseClass.php';
+
+// Contoh membuat beberapa objek ChildClass
+$users = [
+    new ChildClass(1, "John Doe", "john.doe@example.com", "123 Main St", "Admin"),
+    new ChildClass(2, "Jane Smith", "jane.smith@example.com", "456 Elm St", "User"),
+    new ChildClass(3, "Alice Johnson", "alice.johnson@example.com", "789 Maple St", "Moderator"),
+];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belajar Pewarisan</title>
+    <title>Users Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <?php 
-        class OrangTua
-        {
-            public $judul;
-
-            public function __construct()
-            {
-             $this->judul = 'ini class-'. __CLASS__;   
-            }
-
-            public function display()
-            {
-                return $this->judul;
-            }
-        }
-        class Anak extends OrangTua
-        {}
-    ?>
-    <h1> <?php  echo (new OrangTua)->display() ?> </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Alamat</th>
+                <th>Jabatan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($users as $key => $user): ?>
+                <tr>
+                    <td><?php echo $key + 1; ?></td>
+                    <td><?php echo $user->name; ?></td>
+                    <td><?php echo $user->email; ?></td>
+                    <td><?php echo $user->address; ?></td>
+                    <td><?php echo $user->role; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </body>
 </html>

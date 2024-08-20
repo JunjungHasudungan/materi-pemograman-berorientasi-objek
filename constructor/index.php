@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($listUser as $key => $user): ?>
+            <?php foreach ($users as $key => $user): ?>
                 <tr>
                     <td><?php echo $key + 1; ?></td>
                     <td><?php echo $user->name; ?></td>
