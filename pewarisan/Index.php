@@ -1,13 +1,12 @@
 <?php
 
 require_once 'ChildClass.php';
-require_once 'BaseClass.php';
 
 // Contoh membuat beberapa objek ChildClass
 $users = [
-    new ChildClass(1, "John Doe", "john.doe@example.com", "123 Main St", "Admin"),
-    new ChildClass(2, "Jane Smith", "jane.smith@example.com", "456 Elm St", "User"),
-    new ChildClass(3, "Alice Johnson", "alice.johnson@example.com", "789 Maple St", "Moderator"),
+    new ChildClass(1, "John Doe", "john.doe@example.com", "123 Main St", "Admin", 81245546776),
+    new ChildClass(2, "Jane Smith", "jane.smith@example.com", "456 Elm St", "User", 81245546776),
+    new ChildClass(3, "Alice Johnson", "alice.johnson@example.com", "789 Maple St", "Moderator", 81245546776),
 ];
 ?>
 
@@ -40,6 +39,7 @@ $users = [
                 <th>Username</th>
                 <th>Email</th>
                 <th>Alamat</th>
+                <th>No Handphone</th>
                 <th>Jabatan</th>
             </tr>
         </thead>
@@ -50,6 +50,7 @@ $users = [
                     <td><?php echo $user->name; ?></td>
                     <td><?php echo $user->email; ?></td>
                     <td><?php echo $user->address; ?></td>
+                    <td><?php echo $user->phoneNumber; ?></td>
                     <td><?php echo $user->role; ?></td>
                 </tr>
             <?php endforeach; ?>
