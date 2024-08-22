@@ -1,6 +1,6 @@
 <?php
 
-abstract class BaseClass
+abstract class AbstractUser
 {
     public $id, $name, $email, $address;
 

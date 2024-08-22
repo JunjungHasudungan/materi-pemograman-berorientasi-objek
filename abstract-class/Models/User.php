@@ -1,9 +1,9 @@
 <?php
 
-require_once 'BaseClass.php';
+require_once 'AbstractUser.php';
 require_once 'config/Database.php';
 
-class User extends BaseClass {
+class User extends AbstractUser {
     public $role;
     protected $db;
 
@@ -30,6 +30,20 @@ class User extends BaseClass {
           $stmt->execute();
     }
 
+    public function setData($id): void
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $data = $stmt->fetch();
+        
+        $this->id = $data['id'];
+        $this->name = $data['name'];
+        $this->email = $data['email'];
+        $this->address = $data['address'];
+        $this->role = $data['role'];
+    }
+
     // function kepunyaan child-class
     public static function getAllUsers()
     {
@@ -38,5 +52,16 @@ class User extends BaseClass {
         $stmt = $db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function update(): bool
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET name = :name, email = :email, address = :address, role = :role WHERE id = :id");
+        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':address', $this->address);
+        $stmt->bindParam(':role', $this->role);
+        $stmt->bindParam(':id', $this->id);
+        return $stmt->execute();
     }
 }
