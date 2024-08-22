@@ -2,10 +2,7 @@
 
 abstract class BaseClass
 {
-    protected $id;
-    protected $name;
-    protected $email;
-    protected $address;
+    public $id, $name, $email, $address;
 
     public function __construct($id = "", $name = "", $email = "", $address = "")
     {
