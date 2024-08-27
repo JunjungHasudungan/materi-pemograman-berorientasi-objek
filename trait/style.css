@@ -111,3 +111,17 @@ tr:hover {
 .btn-view:hover {
     background-color: #0056b3;
 }
+
+.message {
+    padding: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+    background-color: #1de7d3; /* Turquoise-blue background */
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid white; /* White border */
+    font-weight: bold; /* Bold font */
+    display: none;
+}
