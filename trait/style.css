@@ -119,7 +119,7 @@ tr:hover {
     margin-bottom: 10px;
     background-color: #1de7d3; /* Turquoise-blue background */
     color: white;
-    text-align: center;
+    text-align: left;
     border-radius: 5px;
     border: 2px solid white; /* White border */
     font-weight: bold; /* Bold font */

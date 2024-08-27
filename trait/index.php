@@ -4,42 +4,30 @@
     <meta charset="UTF-8">
     <title>User Registration</title>
     <link rel ="stylesheet" href="style.css"/>  
+    <script src="js/helper.js"></script>
 </head>
     <body>
         <?php
-            require_once 'Models/User.php';  // Gunakan require_once untuk menghindari pengulangan
+            require_once 'Models/User.php';  
             require_once 'helper/Role.php';
-            session_start(); // Memulai session
-
+            session_start(); 
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
-                // Mengambil data dari form
                 $name = $_POST['name'];
                 $email = $_POST['email'];
                 $address = $_POST['address'];
                 $role = $_POST['role'];
-
-                // Registrasi user baru
                 $user = new User(null, $name, $email, $address, $role);
                 $user->register();
             }
-
             $users = User::all();
-
-            // melakukan pengecekan method get
             if (isset($_GET['delete_id'])) {
                 $deleteId = $_GET['delete_id'];
-
-            User::deleteById('users', $deleteId);
-
-            $_SESSION['success_message'] = "Berhasil melakukan penghapusan data user";
-
-            // mengalihkan kehalaman index
-            header("Location: index.php");
-            exit();
-                
+                User::deleteById('users', $deleteId);
+                $_SESSION['success_message'] = "Berhasil melakukan penghapusan data user";
+                header("Location: index.php");
+                exit();
             }
         ?>
-
 
         <div class="container">
             <!-- Card untuk Form Register -->
@@ -60,12 +48,7 @@
 
             <!-- Card untuk Tabel User -->
             <div class="card">
-                <?php if (isset($_SESSION['success_message'])): ?>
-                    <div id="message" class="message">
-                        <?= $_SESSION['success_message']; ?>
-                    </div>
-                    <?php unset($_SESSION['success_message']); // Hapus pesan dari session setelah ditampilkan ?>
-                <?php endif; ?>
+            <?php include 'display-messages/success-delete.php'; ?>
                 <h2>Data User</h2>
                 <table>
                     <thead>
@@ -104,16 +87,4 @@
             </div>
         </div>
     </body>
-    <script>
-        // Script untuk menghilangkan pesan setelah 3 detik
-        window.onload = function() {
-            const message = document.getElementById('message');
-            if (message) {
-                message.style.display = 'block';
-                setTimeout(function() {
-                    message.style.display = 'none';
-                }, 3000);
-            }
-        };
-    </script>
 </html>
