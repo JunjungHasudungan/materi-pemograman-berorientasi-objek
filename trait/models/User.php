@@ -2,7 +2,12 @@
 
 require_once 'BaseClass.php';
 require_once 'config/Database.php';
+require_once 'services-trait/InteractWithDatabase.php';
+
 class User extends BaseClass {
+
+    use InteractWithDatabase;
+
     public $role, $pdo;
 
     public function __construct($id = "", $name = "", $email = "", $address = "", $role = "")  {
@@ -11,11 +16,18 @@ class User extends BaseClass {
         $this->pdo = Database::getConnection();
     }
 
+    public function setConnection()
+    {
+        
+    }
+
     public function setData($id): void {
-        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
+        // $stmt->bindParam(':id', $id);
+        // $stmt->execute();
+        // $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        $data = $this->findById('users', $id);
 
         if ($data) {
             $this->id = $data['id'];
@@ -36,7 +48,7 @@ class User extends BaseClass {
         return $stmt->execute();
     }
 
-    public static function getAllUsers()
+    public static function all()
         {
             $db = Database::getConnection();
             $query = "SELECT * FROM users";
@@ -59,6 +71,4 @@ class User extends BaseClass {
     {
         return $this->role;
     }
-
-   
 }

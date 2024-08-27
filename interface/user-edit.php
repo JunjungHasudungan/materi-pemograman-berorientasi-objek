@@ -8,9 +8,9 @@
 <body>
 <?php
     require_once 'Models/User.php';
+    
     require_once 'helper/Role.php';
 
-    // melakukan pengecekan pengambilan id benar
     if (!isset($_GET['id']) || empty($_GET['id'])) {
         header('Location: index.php');
         exit;
@@ -29,31 +29,12 @@
         $user->setRole($_POST['role']);
         
         if ($user->update()) {
-            // Redirect to index.php after successful update
             header('Location: index.php');
             exit;
         } else {
             $error = 'Update failed.';
         }
     }
-
-
-    // $user = new User(null, '', '', '', '');
-    // if (isset($_GET['id'])) {
-    //     $user->setData($_GET['id']);
-    // }
-    // var_dump($user);
-
-    // if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
-    //     $user->name = $_POST['name'];
-    //     $user->email = $_POST['email'];
-    //     $user->address = $_POST['address'];
-    //     $user->role = $_POST['role'];
-    //     if ($user->update()) {
-    //         header('Location: index.php');
-    //         exit();
-    //     }
-    // }
 ?>
 
 <div class="container">
