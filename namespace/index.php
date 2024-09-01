@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>User Registration</title>
-    <link rel ="stylesheet" href="assets/css/style.css"/>  
-    <script src="assets/js/helper.js"></script>
+    <link rel ="stylesheet" href="style.css"/>  
+    <script src="js/helper.js"></script>
 </head>
     <body>
-        <?php
-            require_once 'Models/User.php';  
-            require_once 'helper/Role.php';
+        <?php 
+            require_once 'App/init.php';
+            use App\Helper\Role;
+            use App\Models\User;
+
             session_start(); 
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
                 $name = $_POST['name'];
@@ -27,8 +29,8 @@
                 header("Location: index.php");
                 exit();
             }
+            
         ?>
-
         <div class="container">
             <!-- Card untuk Form Register -->
             <div class="card">
