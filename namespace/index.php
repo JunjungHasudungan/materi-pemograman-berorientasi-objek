@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>User Registration</title>
-    <link rel ="stylesheet" href="style.css"/>  
-    <script src="js/helper.js"></script>
+    <link rel ="stylesheet" href="assets/css/style.css"/>  
+    <script src="assets/js/helper.js"></script>
 </head>
     <body>
         <?php 

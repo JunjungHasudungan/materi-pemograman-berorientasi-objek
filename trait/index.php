@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>User Registration</title>
-    <link rel ="stylesheet" href="assets/css/style.css"/>  
+    <link rel ="stylesheet" href="css/style.css"/>  
     <script src="assets/js/helper.js"></script>
 </head>
     <body>
