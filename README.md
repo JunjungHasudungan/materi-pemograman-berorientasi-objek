@@ -14,6 +14,7 @@ pemahaman dan juga praktek dalam pembelajaran pemograman, materi yang berisikan 
 - [trait]
 - [static-method]
 - [static-properthies]
+- [namespace]
 - [auto-loading]
 - [depency-injection]
 - [studi-kasus-penggunaan-konsep-pbo(CRUD)]
