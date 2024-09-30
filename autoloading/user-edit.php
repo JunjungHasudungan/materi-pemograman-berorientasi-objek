@@ -10,43 +10,82 @@
 <body>
     <?php 
 
-        require_once 'App/init.php';
+        require_once __DIR__ . '/autoload.php';
         use App\Helper\Role;
         use App\Models\User;
+        use App\Controllers\UserController;
 
         session_start(); 
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $address = $_POST['address'];
-            $role = $_POST['role'];
-            $user = new User(null, $name, $email, $address, $role);
-            $user->register();
-        }
-
         $users = User::all();
-
-        if (isset($_GET['delete_id'])) {
-            $deleteId = $_GET['delete_id'];
-            User::deleteById('users', $deleteId);
-            $_SESSION['success_message'] = "Berhasil melakukan penghapusan data user";
-            header("Location: index.php");
-            exit();
+        foreach ($users as $key => $user) {
+            $name = $user['name'];
+            $email = $user['email'];
+            $address = $user['address'];
+            $role = $user['role'];
+            $userId = $user['id'];
         }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            (new UserController())->update();
+        }
+
     ?>
     <div class="card">
         <h2>UPDATE</h2>
-        <form action="" method="post">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="text" name="address" placeholder="Address" required>
-            <select name="role" id="role" required>
+        <form 
+            action="" 
+            method="post" 
+        >
+            <input 
+                type="hidden" 
+                name="id" 
+                value="<?= htmlspecialchars($userId); ?>"
+            >
+            <input 
+                type="text" 
+                name="name" 
+                value="<?= htmlspecialchars($name); ?>"  
+                placeholder="Name" 
+                required
+            >
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="Email" 
+                value="<?= htmlspecialchars($email); ?>"
+                required
+            >
+            <input 
+                type="text" 
+                name="address" 
+                value="<?= htmlspecialchars($address); ?>"
+                placeholder="Address" 
+                required
+            >
+            <select 
+                name="role" 
+                id="role" 
+                required
+            >
                 <?php foreach (Role::roles as $key => $value) : ?>
-                    <option value="<?= $value ?>"><?= $key ?></option>
+                    <option value="<?= $value ?>" <?= ($value === $role) ? 'selected' : '' ?> ><?= $key ?></option>
                 <?php endforeach; ?>
             </select><br><br>
-            <input type="submit" name="update" value="UPDATE">
+            <div style="display: flex; margin-top: 10px; gap: 10px;">
+                <input 
+                    type="submit" 
+                    id="submit-edit" 
+                    name="update" 
+                    value="UPDATE"
+                >
+                <input 
+                    type="button" 
+                    id="btn-back-edit" 
+                    value="KEMBALI" 
+                    onclick="window.location.href='index.php';"
+                >
+            </div>
         </form>
     </div>
 </body>

@@ -52,7 +52,7 @@ select:focus {
 }
 
 /* Mengatur tampilan tombol submit */
-input[type="submit"] {
+#btn-register {
     background-color: #5cb85c;
     color: white;
     padding: 12px 20px;
@@ -124,4 +124,26 @@ tr:hover {
     border: 2px solid white; /* White border */
     font-weight: bold; /* Bold font */
     display: none;
+}
+
+#submit-edit{
+    padding: 10px 20px; 
+    background-color: blue; 
+    color: white; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 40%;
+    transition: background-color 0.3s ease;
+}
+
+#btn-back-edit{
+    padding: 10px 20px; 
+    background-color: gray; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    width: 40%;
 }

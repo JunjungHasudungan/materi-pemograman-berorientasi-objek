@@ -2,7 +2,6 @@
 
 namespace App\ServiceTrait;
 
-require_once 'App/Config/Database.php';
 use App\Config\Database;
 
 trait InteractWithDatabase {

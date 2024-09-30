@@ -1,9 +1,7 @@
 <?php
+    namespace App\Models;
 
-    require_once 'App/Config/Database.php';
     use App\Config\Database;
-
-    require_once 'App/Utilities/PersonInterface.php';
     use App\Utilities\PersonInterface;
     
 abstract class BaseClass implements PersonInterface
@@ -32,10 +30,6 @@ abstract class BaseClass implements PersonInterface
 
     public function setEmail($email): void {
         $this->email = $email;
-    }
-
-    public function setRole($role): void {
-        $this->role = $role;
     }
 
     public function setAdress($address): void  {

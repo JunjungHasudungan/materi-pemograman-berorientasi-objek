@@ -2,13 +2,8 @@
 
 namespace App\Models;
 
-require_once 'BaseClass.php';
-use BaseClass;
-
-require_once 'App/Service-trait/InteractWithDatabase.php';
+use App\Models\BaseClass;
 use App\ServiceTrait\InteractWithDatabase;
-
-require_once 'App/Config/Database.php';
 use App\Config\Database;
 
 require_once 'App/Config/config.php';
@@ -17,17 +12,18 @@ class User extends BaseClass {
 
     use InteractWithDatabase;
 
-    public $role, $pdo;
+    public $role, $pdo, $table;
 
     public function __construct($id = "", $name = "", $email = "", $address = "", $role = "")  {
         parent::__construct($id, $name, $email, $address);
         $this->role = $role;
         $this->pdo = Database::getConnection();
+        $this->table = 'users';
     }
 
     public function setData($id): void {
 
-        $data = $this->findById('users', $id);
+        $data = $this->findById($this->table, $id);
 
         if ($data) {
             $this->id = $data['id'];
@@ -65,6 +61,11 @@ class User extends BaseClass {
         $stmt->bindParam(':address', $this->address);
         $stmt->bindParam(':role', $this->role);
         return $stmt->execute();
+    }
+
+    public function setRole($role): void 
+    {
+        $this->role = $role;
     }
 
     public function getRole(): string

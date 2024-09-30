@@ -8,11 +8,15 @@
 </head>
     <body>
         <?php 
-            require_once 'App/init.php';
+
+            require_once __DIR__ . '/autoload.php';
+
             use App\Helper\Role;
             use App\Models\User;
 
             session_start(); 
+
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
                 $name = $_POST['name'];
                 $email = $_POST['email'];
@@ -26,9 +30,11 @@
                 $deleteId = $_GET['delete_id'];
                 User::deleteById('users', $deleteId);
                 $_SESSION['success_message'] = "Berhasil melakukan penghapusan data user";
-                header("Location: index.php");
-                exit();
+                // header("Location: index.php");
+                // exit();
             }
+
+           
             
         ?>
         <div class="container">
@@ -36,7 +42,11 @@
             <div class="card">
                 <h2>Register</h2>
                 <form action="" method="post">
-                    <input type="text" name="name" placeholder="Name" required>
+                    <input 
+                        type="text" 
+                        name="name" 
+                        placeholder="Name" 
+                        required>
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="text" name="address" placeholder="Address" required>
                     <select name="role" id="role" required>
@@ -44,7 +54,8 @@
                             <option value="<?= $value ?>"><?= $key ?></option>
                         <?php endforeach; ?>
                     </select><br><br>
-                    <input type="submit" name="register" value="Register">
+                    <input type="submit" id="btn-register" 
+                    name="register" value="Register">
                 </form>
             </div>
 
@@ -67,15 +78,15 @@
                         <?php if(count($users) > 0): ?>
                             <?php foreach($users as $user): ?>
                                 <tr>
-                                    <td><?= $user['id']; ?> </td>
-                                    <td><?= $user['name']; ?></td>
-                                    <td><?= $user['email']; ?></td>
-                                    <td><?= $user['address']; ?></td>
-                                    <td><?= $user['role']; ?></td>
+                                    <td><?= htmlspecialchars($user['id']); ?> </td>
+                                    <td><?= htmlspecialchars($user['name']); ?></td>
+                                    <td><?= htmlspecialchars($user['email']); ?></td>
+                                    <td><?= htmlspecialchars($user['address']); ?></td>
+                                    <td><?= htmlspecialchars($user['role']); ?></td>
                                     <td>
-                                        <a href="user-edit.php?id=<?= $user['id']; ?>">Edit</a> 
+                                        <a href="user-edit.php?id=<?= htmlspecialchars($user['id']); ?>">Edit</a> 
                                         <a href="#">view</a>
-                                        <a href="index.php?delete_id=<?= $user['id']; ?>" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                                        <a href="index.php?delete_id=<?= htmlspecialchars($user['id']); ?>" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
