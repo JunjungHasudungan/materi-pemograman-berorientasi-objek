@@ -16,7 +16,6 @@
 
             session_start(); 
 
-
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
                 $name = $_POST['name'];
                 $email = $_POST['email'];
@@ -25,7 +24,9 @@
                 $user = new User(null, $name, $email, $address, $role);
                 $user->register();
             }
+
             $users = User::all();
+            
             if (isset($_GET['delete_id'])) {
                 $deleteId = $_GET['delete_id'];
                 User::deleteById('users', $deleteId);
@@ -34,8 +35,6 @@
                 // exit();
             }
 
-           
-            
         ?>
         <div class="container">
             <!-- Card untuk Form Register -->

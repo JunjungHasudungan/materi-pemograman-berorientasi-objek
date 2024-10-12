@@ -3,10 +3,10 @@
 namespace App\Controllers;
 
 use App\Models\User;
-use APP\Helper\Role;
 use App\ServiceTrait\InteractWithDatabase;
 
 class UserController {
+    
     use InteractWithDatabase;
 
     public function update()
