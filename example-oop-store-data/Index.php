@@ -42,13 +42,13 @@ $users = $userController->index();
         <br><br>
         <label for="address">Alamat:</label>
         <input type="text" id="address" name="address">
-        <?php if (!empty($errors['name'])): ?>
+        <?php if (!empty($errors['address'])): ?>
             <div style="color: red;"><?= htmlspecialchars($errors['address']) ?></div>
         <?php endif; ?>
         <br><br>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email">
-        <?php if (!empty($errors['name'])): ?>
+        <?php if (!empty($errors['email'])): ?>
             <div style="color: red;"><?= htmlspecialchars($errors['email']) ?></div>
         <?php endif; ?>
         <br><br>

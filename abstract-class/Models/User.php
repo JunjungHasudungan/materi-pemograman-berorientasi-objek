@@ -7,9 +7,9 @@ class User extends AbstractUser {
     public $role;
     protected $db;
 
-    // menggunakan / override __construct dari parent
     public function __construct($id = "", $name = "", $email = "", $address = "", $role = "")
     {
+        // menggunakan / override __construct dari parent
         parent::__construct($id, $name, $email, $address);
 
         $this->role = $role;

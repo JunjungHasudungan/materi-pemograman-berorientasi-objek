@@ -9,7 +9,7 @@ class ChildClass extends BaseClass
     // membuat properti tambahan diChildClass
     public $phoneNumber;
 
-    public function __construct($id, $name, $email, $address, $role, int $phoneNumber)
+    public function __construct($id, $name, $email, $address, $role, $phoneNumber)
     {
         // melakukan overriding method construct dari parent class
         parent::__construct($id, $name, $email, $address, $role);
